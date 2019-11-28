@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Portfolios</h2>
+<div class="card">
+    <div class="row">
+        <div class="col">
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                    Portfolios
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    {% for portfolio in portfolios %}
+                    <a class="dropdown-item" href="http://localhost:8000/portfolio/?portfolio_id={{ portfolio.id }}">
+                        {{ portfolio.name }}</a>
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h4>Investment : Rs. {{portfolioInvestmentValue}}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-borderless">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Investment</th>
+                    <th scope="col">Weight%</th>
+                    <th scope="col">Target</th>
+                    <th scope="col">Exp.Ret%</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for stock in stocks %}
+                <tr>
+                    <th scope="row">{{stock.id}}</th>
+                    <td>{{stock.name}}</td>
+                    <td>{{stock.cmp}}</td>
+                    <td>{{stock.investmentAmount}}</td>
+                    <td>{{stock.weight}}%</td>
+                    <td>{{stock.target}}</td>
+                    <td>{{stock.expRet}}%</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>
+
+
+{% endblock %}
